@@ -1,0 +1,17 @@
+{
+  "name": "gym-booking",
+  "version": "1.0.0",
+  "description": "Simple gym slot booking system",
+  "main": "server.js",
+  "scripts": {
+    "seed": "node seed.js",
+    "make-admin": "node make-admin.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

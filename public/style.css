@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; }
+header { background: #222; color: #fff; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+header h1 { font-size: 1.2rem; margin: 0; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+nav a, nav button { color: #fff; background: none; border: 1px solid #888; padding: 6px 10px; text-decoration: none; cursor: pointer; font-size: 1rem; }
+main { max-width: 700px; margin: 0 auto; padding: 14px; }
+.card { background: #fff; border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; }
+label { display: block; margin-top: 10px; font-weight: bold; }
+input, select { width: 100%; padding: 8px; font-size: 1rem; margin-top: 4px; }
+button { padding: 8px 12px; font-size: 1rem; cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+:focus-visible { outline: 3px solid #0a58ca; outline-offset: 2px; }
+.error { color: #a00000; border-left: 4px solid #a00000; padding: 6px 8px; margin: 8px 0; background: #fff0f0; }
+.success { color: #045d04; border-left: 4px solid #045d04; padding: 6px 8px; margin: 8px 0; background: #f0fff0; }
+.field-error { color: #a00000; font-size: 0.9rem; min-height: 1em; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.code { font-family: monospace; font-size: 1.3rem; letter-spacing: 2px; background: #eee; padding: 2px 6px; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { border: 1px solid #ccc; padding: 6px; text-align: left; font-size: 0.9rem; word-break: break-word; }
+.table-wrap { overflow-x: auto; }
