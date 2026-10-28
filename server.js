@@ -12,6 +12,15 @@ const CAPACITY = 20;
 
 const app = express();
 app.use(express.json());
+
+// Restore original request path if Vercel internal rewrites rewrite req.url
+app.use((req, res, next) => {
+  const matchedPath = req.headers['x-matched-path'] || req.headers['x-forwarded-uri'];
+  if (matchedPath && !matchedPath.includes('api/index')) {
+    req.url = matchedPath;
+  }
+  next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- helpers ----------
