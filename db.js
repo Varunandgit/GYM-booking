@@ -1,7 +1,16 @@
 // Opens the SQLite database and creates the tables if they do not exist.
 // Uses the SQLite that is built into Node (22.5 or newer) - nothing to compile.
 const { DatabaseSync } = require('node:sqlite');
-const raw = new DatabaseSync('gym.db');
+const path = require('path');
+const os = require('os');
+const seedData = require('./seed-data');
+
+// On Vercel / serverless environments, the root filesystem is read-only.
+// We store the database in the system temporary directory (e.g. /tmp on Linux/Vercel).
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const dbPath = isServerless ? path.join(os.tmpdir(), 'gym.db') : path.join(__dirname, 'gym.db');
+
+const raw = new DatabaseSync(dbPath);
 raw.exec('PRAGMA foreign_keys = ON');
 
 const db = {
@@ -58,5 +67,15 @@ CREATE TABLE IF NOT EXISTS waitlist (
   UNIQUE (user_id, session_id)     -- cannot join twice
 );
 `);
+
+// Auto-seed if the database has no users (e.g. initial run or newly created in /tmp on Vercel)
+try {
+  const userCount = raw.prepare('SELECT COUNT(*) AS n FROM users').get().n;
+  if (userCount === 0) {
+    seedData(db);
+  }
+} catch (err) {
+  console.error('Auto-seed check error:', err);
+}
 
 module.exports = db;

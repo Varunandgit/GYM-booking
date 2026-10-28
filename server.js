@@ -304,4 +304,8 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: { status, message } });
 });
 
-app.listen(PORT, () => console.log(`Gym booking running at http://localhost:${PORT}`));
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Gym booking running at http://localhost:${PORT}`));
+}
+
+module.exports = app;

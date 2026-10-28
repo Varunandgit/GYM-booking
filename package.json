@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Simple gym slot booking system",
   "main": "server.js",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "seed": "node seed.js",
     "make-admin": "node make-admin.js",

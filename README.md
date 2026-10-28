@@ -24,6 +24,29 @@ npm start
 ```
 Open http://localhost:3000
 
+## Deploy to Vercel
+
+### Option 1: Import via Git (GitHub / GitLab / Bitbucket)
+1. Push this repository to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. In **Environment Variables**, set:
+   - `JWT_SECRET`: Any random string (e.g. generated via `openssl rand -hex 32`)
+4. Click **Deploy**.
+
+### Option 2: Deploy using Vercel CLI
+```bash
+npm install -g vercel
+vercel
+```
+Follow the interactive prompts, then set the production environment variable if prompted:
+```bash
+vercel env add JWT_SECRET
+vercel --prod
+```
+
+> **Note on SQLite on Vercel:**  
+> Vercel Serverless Functions use an ephemeral filesystem where `/tmp` is the writable directory. On first invocation on a serverless container, the application automatically initializes the database schema and seeds the default admin and member accounts. For long-term persistent production storage across distributed lambdas, a hosted database (such as Turso/libSQL or Postgres) can be connected.
+
 ## Test logins
 | Role   | Email          | Password   |
 |--------|----------------|------------|

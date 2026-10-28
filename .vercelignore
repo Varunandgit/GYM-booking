@@ -1,0 +1,7 @@
+.git
+.env
+.env.example
+gym.db
+gym.db-journal
+gym.db-wal
+gym.db-shm
